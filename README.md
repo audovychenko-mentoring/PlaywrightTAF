@@ -92,10 +92,12 @@ A starter GitHub Actions workflow lives in `.github/workflows/ci.yml`.
 - `lint`, `typecheck`, and `format-check` run on push and pull request
 - `CodeQL` scans JavaScript/TypeScript and GitHub Actions code
 - `Semgrep` runs community rules and uploads SARIF results to GitHub code scanning
+- `Gitleaks` provides dedicated secret scanning when the required license secret is configured
 - `OWASP Dependency-Check` scans third-party dependencies for known CVEs and uploads an HTML report artifact
 - `smoke-live-site` runs only from manual dispatch because the target site may block some runners or IP ranges
 
 Note: CodeQL on private repositories requires GitHub Advanced Security to be enabled for the owning organization or enterprise.
+Note: the official Gitleaks action requires a `GITLEAKS_LICENSE` secret for organization-owned repositories. Until that secret is configured, the Gitleaks job will skip with instructions.
 
 ## Note About Red Cross Access
 

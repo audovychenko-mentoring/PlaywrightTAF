@@ -122,6 +122,35 @@ jobs:
         with:
           sarif_file: semgrep.sarif
 
+  gitleaks:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    env:
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Skip Gitleaks until license secret is configured
+        if: env.GITLEAKS_LICENSE == ''
+        run: |
+          echo "Gitleaks requires the GITLEAKS_LICENSE repository or organization secret for organization-owned repositories."
+          echo "Configure that secret to enable the dedicated secrets scan job."
+
+      - name: Run Gitleaks
+        if: env.GITLEAKS_LICENSE != ''
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: ${{ env.GITLEAKS_LICENSE }}
+          GITLEAKS_ENABLE_COMMENTS: 'false'
+          GITLEAKS_ENABLE_SUMMARY: 'true'
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: 'true'
+
   owasp-dependency-check:
     name: OWASP Dependency-Check
     runs-on: ubuntu-latest
