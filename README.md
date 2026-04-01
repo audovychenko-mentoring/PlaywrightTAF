@@ -92,6 +92,7 @@ A starter GitHub Actions workflow lives in `.github/workflows/ci.yml`.
 - `lint`, `typecheck`, and `format-check` run on push and pull request
 - `CodeQL` scans JavaScript/TypeScript and GitHub Actions code
 - `Semgrep` runs community rules and uploads SARIF results to GitHub code scanning
+- `OWASP Dependency-Check` scans third-party dependencies for known CVEs and uploads an HTML report artifact
 - `smoke-live-site` runs only from manual dispatch because the target site may block some runners or IP ranges
 
 Note: CodeQL on private repositories requires GitHub Advanced Security to be enabled for the owning organization or enterprise.
