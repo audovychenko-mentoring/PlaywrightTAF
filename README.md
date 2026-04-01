@@ -89,8 +89,12 @@ This layout keeps assertions in the spec layer, uses fixtures to create page obj
 
 A starter GitHub Actions workflow lives in `.github/workflows/ci.yml`.
 
-- `quality` runs on push and pull request
+- `lint`, `typecheck`, and `format-check` run on push and pull request
+- `CodeQL` scans JavaScript/TypeScript and GitHub Actions code
+- `Semgrep` runs community rules and uploads SARIF results to GitHub code scanning
 - `smoke-live-site` runs only from manual dispatch because the target site may block some runners or IP ranges
+
+Note: CodeQL on private repositories requires GitHub Advanced Security to be enabled for the owning organization or enterprise.
 
 ## Note About Red Cross Access
 
