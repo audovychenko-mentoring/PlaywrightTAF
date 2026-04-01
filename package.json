@@ -1,0 +1,41 @@
+{
+  "name": "playwrighttaf",
+  "version": "1.0.0",
+  "description": "Playwright automation framework starter for the Red Cross website",
+  "scripts": {
+    "test": "playwright test",
+    "test:ci": "playwright test --reporter=line",
+    "smoke": "playwright test tests/specs/smoke",
+    "smoke:ci": "playwright test tests/specs/smoke --reporter=line",
+    "smoke:headed": "playwright test tests/specs/smoke --headed",
+    "smoke:debug": "playwright test tests/specs/smoke --debug",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --cache --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "ci:check": "npm run typecheck && npm run lint && npm run format:check",
+    "ci": "npm run ci:check && npm run smoke:ci",
+    "verify": "npm run ci"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.59.0",
+    "@types/node": "^25.5.0",
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-playwright": "^2.10.1",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.1",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.0"
+  }
+}
